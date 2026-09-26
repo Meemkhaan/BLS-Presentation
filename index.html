@@ -700,6 +700,16 @@ addEventListener('touchend',e=>{
 show(0);
 fitFooter();
 addEventListener('load',fitFooter);
+
+/* ---------- OFFLINE (service worker) ----------
+   Lets the hosted page keep working with no connectivity after one visit.
+   Skipped on file:// (service workers are unavailable there) — the local
+   folder copy already runs offline, since nothing external is ever fetched. */
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').then(reg=>reg.update()).catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
