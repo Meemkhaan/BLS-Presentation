@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head><meta charset="UTF-8"><title>sw probe</title></head>
+<body>
+<pre id="R">pending</pre>
+<script>
+window.addEventListener('load',()=>{
+  const O=[];
+  (async()=>{
+    O.push('ONLINE/OFFLINE flag: '+(navigator.onLine?'onLine':'OFFLINE'));
+    O.push('performance resource entries: '+performance.getEntriesByType('resource').length);
+    try{
+      if(!('serviceWorker' in navigator)){ O.push('NO serviceWorker support'); }
+      else{
+        const reg=await navigator.serviceWorker.ready;
+        O.push('SW scope       : '+reg.scope);
+        O.push('SW active      : '+(reg.active?reg.active.state:'none'));
+        O.push('page controlled: '+!!navigator.serviceWorker.controller);
+        let n=0;
+        for(let i=0;i<200;i++){
+          const c=await caches.open('bls-deck-v1');
+          n=(await c.keys()).length;
+          if(n>=24) break;
+          await new Promise(r=>setTimeout(r,250));
+        }
+        O.push('cache entries  : '+n+' / 24');
+        O.push('cache names    : '+(await caches.keys()).join(','));
+        const c=await caches.open('bls-deck-v1');
+        const keys=(await c.keys()).map(r=>new URL(r.url).pathname.split('/').pop()||'/');
+        O.push('cached files   : '+keys.sort().join(' '));
+      }
+    }catch(e){ O.push('SW ERROR: '+e.message); }
+    const imgs=[...document.querySelectorAll('.photo img')];
+    O.push('--- render ---');
+    O.push('photos         : '+imgs.filter(i=>i.complete&&i.naturalWidth>0).length+'/'+imgs.length);
+    imgs.forEach((im,k)=>O.push('   '+(im.complete&&im.naturalWidth>0?'ok  ':'FAIL')+' '+(im.getAttribute('src').split('/').pop())+' '+im.naturalWidth+'x'+im.naturalHeight));
+    O.push('nastaliq 700   : '+document.fonts.check('700 20px "Noto Nastaliq Urdu"'));
+    O.push('anton 400      : '+document.fonts.check('400 20px "Anton"'));
+    O.push('font errors    : '+[...document.fonts].filter(x=>x.status==='error').length);
+    O.push('H1 font        : '+getComputedStyle(document.querySelector('h1')).fontFamily);
+    O.push('H1 height      : '+document.querySelector('h1').getBoundingClientRect().height.toFixed(0));
+    document.getElementById('R').textContent='@@'+O.join('\n')+'@@';
+  })();
+});
+</script>
+</body>
+</html>

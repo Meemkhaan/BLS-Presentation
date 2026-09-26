@@ -6,6 +6,7 @@ const VERSION = 'bls-deck-v1';
 const ASSETS = [
   './',
   './index.html',
+  './__swprobe.html',
   './assets/fonts/anton-latin-ext.woff2',
   './assets/fonts/anton-latin.woff2',
   './assets/fonts/anton-vietnamese.woff2',
