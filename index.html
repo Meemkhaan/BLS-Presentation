@@ -47,13 +47,18 @@ body{font-family:var(--ur);color:var(--ink);line-height:2}
 .lat{font-family:'Anton',sans-serif;direction:ltr;unicode-bidi:isolate;letter-spacing:.05em;line-height:1.1}
 
 /* ---------- DECK ---------- */
-.deck{position:relative;width:100vw;height:100vh}
+.deck{position:relative;width:100vw;height:100vh;height:100dvh}
 .slide{
-  position:absolute;inset:0;padding:4.5vh 6vw 8vh;
-  display:flex;flex-direction:column;justify-content:center;
+  position:absolute;inset:0;
+  /* bottom padding tracks the real footer height (--fh, set by JS) so nothing hides under it */
+  padding:4.5vh 6vw max(8vh,calc(var(--fh,46px) + 1.5vh));
+  display:flex;flex-direction:column;justify-content:safe center;
   opacity:0;visibility:hidden;transform:translateX(-4%);
   transition:opacity .55s ease,transform .55s ease,visibility .55s;
-  background:var(--paper);overflow:hidden;
+  background:var(--paper);
+  /* never clip: overflow scrolls instead, and `safe center` degrades to flex-start when it does */
+  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:var(--ink) transparent;
 }
 .slide.active{opacity:1;visibility:visible;transform:translateX(0)}
 .slide.prev{transform:translateX(4%)}
@@ -104,8 +109,16 @@ b,strong{font-weight:700}
 .footer .dot{color:var(--red)}
 .footer .nav-btns{display:flex;gap:.5rem;flex-shrink:0}
 .footer .nav-btns button{font-family:'Anton';font-size:1.1rem;width:38px;height:38px;border:2px solid var(--paper);
-  background:transparent;cursor:pointer;color:var(--paper);line-height:1;transition:background .15s,color .15s}
+  background:transparent;cursor:pointer;color:var(--paper);line-height:1;transition:background .15s,color .15s;
+  display:flex;align-items:center;justify-content:center;padding:0}
 .footer .nav-btns button:hover{background:var(--red);color:var(--white)}
+.footer .nav-btns button:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+/* fullscreen toggle — icon swaps to "collapse" while fullscreen is active */
+.fs-btn svg{width:20px;height:20px;display:block}
+.fs-btn .i-collapse{display:none}
+body.fs-on .fs-btn .i-expand{display:none}
+body.fs-on .fs-btn .i-collapse{display:block}
+body.fs-on .fs-btn{background:var(--red);color:var(--white)}
 /* slide counter chip — lives inside the footer bar */
 .foot-count{font-family:'Anton',sans-serif;direction:ltr;unicode-bidi:isolate;
   letter-spacing:.12em;line-height:1;background:var(--red);color:var(--white);
@@ -183,7 +196,7 @@ b,strong{font-weight:700}
 
 @media (max-width:940px){
   .grid2,.grid3,.vs{grid-template-columns:1fr;gap:1.3rem}
-  .slide{padding:3.5vh 6vw 9vh;overflow-y:auto;justify-content:flex-start}
+  .slide{padding:3.5vh 6vw max(9vh,calc(var(--fh,46px) + 1.5vh));overflow-y:auto;justify-content:flex-start}
   .photo img,.photo.noimg::after{height:26vh}
   .chain-join{display:none}
   .link{width:104px;height:104px}
@@ -604,6 +617,10 @@ b,strong{font-weight:700}
   <span>YEF <span class="dot">●</span> شیر پاؤ چیپٹر</span>
   <span id="slide-label"></span>
   <span class="nav-btns">
+    <button id="fs" class="fs-btn" aria-label="پورا سکرین" title="پورا سکرین — F" aria-pressed="false">
+      <svg class="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      <svg class="i-collapse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+    </button>
     <button id="next" aria-label="اگلا سلائیڈ" title="اگلا">‹</button>
     <button id="prev" aria-label="پچھلا سلائیڈ" title="پچھلا">›</button>
   </span>
@@ -627,11 +644,52 @@ function show(n){
 }
 document.getElementById('next').onclick=()=>show(i+1);
 document.getElementById('prev').onclick=()=>show(i-1);
+
+/* ---------- FULLSCREEN TOGGLE ---------- */
+const root=document.documentElement;
+const fsBtn=document.getElementById('fs');
+const fsEnter=root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullFullscreen;
+const fsExit=document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen;
+const isFs=()=>!!(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement);
+
+function syncFs(){
+  const on=isFs();
+  document.body.classList.toggle('fs-on',on);
+  fsBtn.setAttribute('aria-pressed',String(on));
+  fsBtn.title=on?'سکرین سے باہر نکلیں — F':'پورا سکرین — F';
+  fsBtn.setAttribute('aria-label',on?'سکرین سے باہر نکلیں':'پورا سکرین');
+  fitFooter();
+}
+function toggleFs(){
+  if(!fsEnter&&!fsExit)return;
+  if(isFs()){ const p=fsExit.call(document); if(p&&p.catch)p.catch(()=>{}); }
+  else{ const p=fsEnter.call(root); if(p&&p.catch)p.catch(()=>{}); }
+}
+fsBtn.onclick=toggleFs;
+document.addEventListener('fullscreenchange',syncFs);
+document.addEventListener('webkitfullscreenchange',syncFs);
+document.addEventListener('msfullscreenchange',syncFs);
+/* hidden when the browser/iframe refuses fullscreen, so it never dead-ends */
+if(!fsEnter) fsBtn.remove();
+
+/* ---------- FIT CONTENT TO AVAILABLE VIEWPORT ---------- */
+/* --fh = real footer height, so slide bottom padding always clears the fixed bar
+   even when its min-height:46px kicks in on short windows */
+const footer=document.getElementById('global-footer');
+function fitFooter(){ root.style.setProperty('--fh',footer.offsetHeight+'px'); }
+addEventListener('resize',fitFooter);
+addEventListener('orientationchange',fitFooter);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitFooter);
+
 addEventListener('keydown',e=>{
   if(['ArrowLeft','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1);}
   if(['ArrowRight','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
   if(e.key==='Home')show(0);
   if(e.key==='End')show(slides.length-1);
+  if(e.key==='f'||e.key==='F'){
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    e.preventDefault(); toggleFs();
+  }
 });
 let tx=0;
 addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
@@ -640,6 +698,8 @@ addEventListener('touchend',e=>{
   if(Math.abs(dx)>60)show(i+(dx>0?-1:1));
 },{passive:true});
 show(0);
+fitFooter();
+addEventListener('load',fitFooter);
 </script>
 </body>
 </html>
