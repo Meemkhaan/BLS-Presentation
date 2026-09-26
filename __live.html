@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بنیادی زندگی بچاؤ — کمیونٹی ٹریننگ | YEF شیر پاؤ چیپٹر</title>
+<script>
+/* image failover: primary local file → backup local file → designed typographic tile */
+function imgErr(img){
+  const alt=img.dataset.alt;
+  if(alt && !img.dataset.tried){ img.dataset.tried='1'; img.src=alt; return; }
+  const fig=img.closest('.photo'); if(fig) fig.classList.add('noimg');
+}
+</script>
+<style>
+/* ---------- LOCAL FONTS (self-hosted — works fully offline) ---------- */
+@font-face{font-family:'Noto Nastaliq Urdu';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("assets/fonts/noto-nastaliq-urdu-arabic.woff2") format('woff2');
+  unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B-1EE4D,U+1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74,U+1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEB1,U+1EEB3-1EEF1}
+@font-face{font-family:'Noto Nastaliq Urdu';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("assets/fonts/noto-nastaliq-urdu-latin-ext.woff2") format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Noto Nastaliq Urdu';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("assets/fonts/noto-nastaliq-urdu-latin.woff2") format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;
+  src:url("assets/fonts/anton-latin.woff2") format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;
+  src:url("assets/fonts/anton-latin-ext.woff2") format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;
+  src:url("assets/fonts/anton-vietnamese.woff2") format('woff2');
+  unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+
+:root{
+  --red:#D62828; --red-dark:#A31F1F;
+  --ink:#161210; --paper:#F4EDDE; --cream:#EFE5CE;
+  --yellow:#FFC53D; --white:#FFFDF7; --green:#2FA84F;
+  --ur:'Noto Nastaliq Urdu',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--ink)}
+body{font-family:var(--ur);color:var(--ink);line-height:2}
+
+/* Latin numerals inside Urdu text */
+.lat{font-family:'Anton',sans-serif;direction:ltr;unicode-bidi:isolate;letter-spacing:.05em;line-height:1.1}
+
+/* ---------- DECK ---------- */
+.deck{position:relative;width:100vw;height:100vh}
+.slide{
+  position:absolute;inset:0;padding:4.5vh 6vw 8vh;
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateX(-4%);
+  transition:opacity .55s ease,transform .55s ease,visibility .55s;
+  background:var(--paper);overflow:hidden;
+}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0)}
+.slide.prev{transform:translateX(4%)}
+
+.grain{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* reveal choreography */
+.rv{opacity:0;transform:translateY(26px)}
+.active .rv{animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+.active .d1{animation-delay:.1s}.active .d2{animation-delay:.25s}
+.active .d3{animation-delay:.4s}.active .d4{animation-delay:.55s}
+.active .d5{animation-delay:.7s}.active .d6{animation-delay:.85s}
+.active .d7{animation-delay:1s}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+/* ---------- TYPE ---------- */
+.eyebrow{font-weight:700;word-spacing:.35em;font-size:clamp(.7rem,1.15vw,1rem);
+  display:inline-flex;align-items:center;gap:.7em}
+.eyebrow::before{content:"";width:2em;height:3px;background:var(--red);flex-shrink:0}
+h1,h2{font-family:var(--ur);font-weight:700;line-height:1.65}
+h1{font-size:clamp(2.4rem,5.6vw,4.8rem)}
+h2{font-size:clamp(1.8rem,4.2vw,3.4rem)}
+.giant{font-family:'Anton';line-height:1}
+.sub{font-size:clamp(.9rem,1.45vw,1.2rem);font-weight:500;max-width:42ch;line-height:2.1}
+.red{color:var(--red)}.paper-txt{color:var(--paper)}.yellow{color:var(--yellow)}
+b,strong{font-weight:700}
+
+/* ---------- COMPONENTS ---------- */
+.tag{display:inline-block;background:var(--red);color:var(--white);font-weight:700;
+  word-spacing:.2em;padding:.15em 1em .3em;font-size:clamp(.72rem,1.15vw,1rem)}
+.card{background:var(--white);border:3px solid var(--ink);box-shadow:-8px 8px 0 var(--ink);
+  padding:1.1rem 1.5rem;line-height:2.1}
+.card.red-c{background:var(--red);color:var(--white);box-shadow:-8px 8px 0 var(--ink)}
+.card.ink-c{background:var(--ink);color:var(--paper);box-shadow:-8px 8px 0 var(--red)}
+.halftone{position:absolute;pointer-events:none;
+  background-image:radial-gradient(var(--ink) 1.6px,transparent 1.6px);
+  background-size:14px 14px;opacity:.16}
+.stripes{position:absolute;pointer-events:none;opacity:.9;
+  background:repeating-linear-gradient(-45deg,var(--red) 0 14px,transparent 14px 34px)}
+.pulse{animation:beat 1s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}12%{transform:scale(1.09)}24%{transform:scale(1)}36%{transform:scale(1.06)}}
+
+.footer{position:fixed;left:0;right:0;bottom:0;height:6.5vh;min-height:46px;
+  background:var(--ink);color:var(--paper);display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;padding:0 4vw 0 6vw;font-size:clamp(.62rem,.95vw,.85rem);
+  font-weight:700;word-spacing:.2em;z-index:65}
+.footer .dot{color:var(--red)}
+.footer .nav-btns{display:flex;gap:.5rem;flex-shrink:0}
+.footer .nav-btns button{font-family:'Anton';font-size:1.1rem;width:38px;height:38px;border:2px solid var(--paper);
+  background:transparent;cursor:pointer;color:var(--paper);line-height:1;transition:background .15s,color .15s}
+.footer .nav-btns button:hover{background:var(--red);color:var(--white)}
+/* slide counter chip — lives inside the footer bar */
+.foot-count{font-family:'Anton',sans-serif;direction:ltr;unicode-bidi:isolate;
+  letter-spacing:.12em;line-height:1;background:var(--red);color:var(--white);
+  padding:.45em .75em .55em;font-size:clamp(.68rem,.95vw,.9rem);flex-shrink:0}
+
+/* ---------- PHOTOS (field-manual polaroids) ---------- */
+.photo{position:relative;background:var(--white);border:4px solid var(--ink);
+  box-shadow:-10px 10px 0 var(--ink);padding:10px 10px 0;
+  transform:rotate(-2.5deg);max-width:min(100%,460px);justify-self:center}
+.photo.tilt-l{transform:rotate(2.5deg)}
+.photo img{display:block;width:100%;height:min(32vh,290px);object-fit:cover;border:2px solid var(--ink)}
+.photo .ph-cap{font-weight:700;text-align:center;padding:.35rem .2rem .75rem;
+  font-size:clamp(.72rem,1.05vw,.95rem);word-spacing:.15em}
+.tape{position:absolute;width:88px;height:26px;background:rgba(255,197,61,.88);
+  border:1px solid rgba(22,18,16,.25);top:-13px;left:22px;transform:rotate(-6deg)}
+.tape.t2{left:auto;right:22px;transform:rotate(5deg)}
+.photo .ovl{position:absolute;top:22px;right:22px;z-index:2}
+.photo.noimg img{display:none}
+.photo.noimg{padding:0;border-width:4px}
+.photo.noimg::after{content:attr(data-word);display:flex;align-items:center;justify-content:center;
+  height:min(32vh,290px);color:var(--paper);font-weight:700;
+  font-size:clamp(1.3rem,2.4vw,2rem);text-align:center;padding:0 1rem;
+  background:var(--ink);
+  background-image:radial-gradient(rgba(244,237,222,.35) 1.6px,transparent 1.6px);
+  background-size:14px 14px}
+
+/* ---------- NAV ---------- */
+.nav{display:none}
+.slide .footer{display:none}
+.progress{position:fixed;top:0;right:0;height:6px;width:0;background:var(--red);z-index:80;transition:width .4s ease}
+
+/* ---------- LAYOUT ---------- */
+.grid2{display:grid;grid-template-columns:1.05fr 1fr;gap:4vw;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:2.4vw}
+.chips{display:flex;gap:.9rem;flex-wrap:wrap}
+.chip{border:3px solid var(--ink);background:var(--white);padding:.15rem 1rem .45rem;
+  font-weight:700;font-size:clamp(.68rem,1.05vw,.92rem);box-shadow:-4px 4px 0 var(--ink)}
+.chip.hot{background:var(--red);color:var(--white)}
+.chip.warn{background:var(--yellow)}
+
+/* chain of survival */
+.chain{display:flex;align-items:center;flex-wrap:wrap;gap:0}
+.link{width:clamp(118px,12.5vw,172px);height:clamp(118px,12.5vw,172px);border-radius:50%;
+  border:4px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:.8rem;background:var(--white);box-shadow:-6px 6px 0 var(--ink);
+  position:relative;flex-shrink:0}
+.link svg{width:34%;height:30%;margin-bottom:.3rem}
+.link b{font-weight:700;font-size:clamp(.62rem,.95vw,.85rem);line-height:1.9;word-spacing:0}
+.link .stepn{position:absolute;top:-6px;left:-8px;background:var(--red);color:#fff;font-family:'Anton';
+  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;border:3px solid var(--ink);direction:ltr}
+.chain-join{width:clamp(22px,3vw,42px);height:8px;background:var(--ink);flex-shrink:0}
+
+/* stat rows */
+.stat-row{display:flex;align-items:center;gap:1.4rem;border-bottom:3px solid var(--ink);padding:.7rem 0}
+.stat-row .n{font-family:'Anton';font-size:clamp(2rem,4.6vw,3.8rem);line-height:1;min-width:2.4ch;text-align:center}
+.stat-row .n small{font-family:var(--ur);font-size:.32em;font-weight:700}
+.stat-row p{font-weight:500;font-size:clamp(.82rem,1.2vw,1.05rem);line-height:1.95}
+
+/* call pills */
+.callpill{display:flex;align-items:center;gap:1.2rem;background:var(--white);border:3px solid var(--ink);
+  box-shadow:-7px 7px 0 var(--ink);padding:.5rem 1.3rem .8rem}
+.callpill .num{font-family:'Anton';font-size:clamp(1.8rem,3.6vw,3rem);color:var(--red);direction:ltr;line-height:1.2}
+.callpill .who{font-weight:700;font-size:clamp(.78rem,1.1vw,1rem);line-height:1.7}
+.callpill .sub2{font-size:clamp(.62rem,.92vw,.82rem);opacity:.75;line-height:1.7}
+
+/* checklists */
+.check{display:flex;gap:1rem;align-items:flex-start;margin-bottom:.9rem;line-height:2}
+.check .box{width:30px;height:30px;border:3px solid currentColor;flex-shrink:0;margin-top:.55rem;position:relative}
+.check.good .box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem}
+.check.bad .box{border-radius:50%}
+.check b{line-height:2}
+.check p{font-size:clamp(.75rem,1.05vw,.95rem);opacity:.85;line-height:1.95}
+
+@media (max-width:940px){
+  .grid2,.grid3,.vs{grid-template-columns:1fr;gap:1.3rem}
+  .slide{padding:3.5vh 6vw 9vh;overflow-y:auto;justify-content:flex-start}
+  .photo img,.photo.noimg::after{height:26vh}
+  .chain-join{display:none}
+  .link{width:104px;height:104px}
+  body{line-height:1.9}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="grain"></div>
+
+<div class="deck" id="deck">
+
+<!-- ============ 1 : ٹائٹل ============ -->
+<section class="slide active" role="group" aria-roledescription="slide" aria-label="1 / 13" style="background:var(--red)">
+  <div class="stripes" style="top:-60px;left:-80px;width:320px;height:320px;transform:rotate(12deg)"></div>
+  <div class="halftone" style="bottom:12vh;right:4vw;width:26vw;height:26vh;background-image:radial-gradient(var(--paper) 1.6px,transparent 1.6px)"></div>
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow paper-txt">یوتھ انگیجمنٹ فورم · <span style="color:var(--yellow)">شیر پاؤ چیپٹر</span></div>
+      <h1 class="rv d2 paper-txt" style="margin-top:1.2vh">اپنے ہاتھوں سے<br><span style="color:var(--yellow)">ایک زندگی</span> بچائیں</h1>
+      <div class="rv d3" style="margin-top:2vh;display:flex;gap:.8rem;flex-wrap:wrap">
+        <span class="tag" style="background:var(--ink)">بنیادی زندگی بچاؤ — بی ایل ایس</span>
+        <span class="tag" style="background:var(--paper);color:var(--ink)">کمیونٹی ٹریننگ</span>
+      </div>
+      <p class="rv d4 paper-txt" style="margin-top:2.2vh;font-weight:500;max-width:42ch;font-size:clamp(.85rem,1.3vw,1.1rem);line-height:2.1">
+        نہ مشین، نہ ہسپتال — بس دو ہاتھ، ایک آواز اور <b style="color:var(--yellow)">عمل کرنے کی ہمت</b>۔ آج سیکھیں، عمر بھر کے لیے ساتھ رکھیں۔
+      </p>
+    </div>
+    <figure class="photo rv d3 tilt-l" data-word="عمل کریں">
+      <span class="tape"></span><span class="tape t2"></span>
+      <img src="assets/img/cpr-training-1.jpg"
+           data-alt="assets/img/cpr-training-2.jpg"
+           alt="سی پی آر کی مشق" loading="eager" onerror="imgErr(this)">
+      <figcaption class="ph-cap">ٹریننگ سیشن — آپ سب کے لیے</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>YEF <span class="dot">●</span> شیر پاؤ چیپٹر</span><span>ایمرجنسی؟ کال <span style="color:var(--yellow)">1122</span></span></div>
+</section>
+
+<!-- ============ 2 : اہمیت ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="2 / 13">
+  <div class="halftone" style="bottom:10vh;left:5vw;width:22vw;height:22vh"></div>
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow">یہ اہم کیوں ہے</div>
+      <h2 class="rv d2" style="margin-top:1vh">ہر سیکنڈ <span class="red">قیمتی</span> ہے</h2>
+      <p class="rv d3 sub" style="margin-top:1.5vh">جب کسی کا دل بیٹھ جائے تو ایمبولینس کو پہنچنے میں وقت لگتا ہے — لیکن آپ وہاں موجود ہوتے ہیں۔ پہلے چند منٹوں کا فیصلہ طے کرتا ہے کہ وہ شخص زندہ بچے گا یا نہیں۔ پاکستان میں سالانہ لاکھوں لوगوں کو دل کا دورہ پڑتا ہے — زیادہ تر گھر میں۔</p>
+      <figure class="photo rv d4" style="margin-top:2vh;max-width:340px" data-word="ایمبولینس">
+        <span class="tape"></span>
+        <img src="assets/img/ambulance-1.jpg"
+             data-alt="assets/img/ambulance-2.jpg"
+             alt="ایمبولینس" loading="lazy" onerror="imgErr(this)">
+        <figcaption class="ph-cap">مدد راستے میں ہے — لیکن وقت لگتا ہے</figcaption>
+      </figure>
+    </div>
+    <div>
+      <div class="stat-row rv d3"><span class="n red lat">10<small>منٹ</small></span><p>سی پی آر کے بغیر دماغ مرنا شروع ہو جاتا ہے۔ ہر گزرتا منٹ بچاؤ کا موقع <b>10%</b> کم ہو جاتا ہے۔</p></div>
+      <div class="stat-row rv d4"><span class="n lat">2×</span><p>فوری سی پی آر سے بچنے کا موقع <b>دگنا یا تین گنا</b> بڑھ جاتا ہے۔ سی پی آر کرنے والا بھی مددگار ہے۔</p></div>
+      <div class="stat-row rv d5"><span class="n lat">4–6</span><p>اتنے ہی منٹوں میں دماغ کو نقصان پہنچنا شروع ہو جاتا ہے — اکثر ایمبولینس سے پہلے۔ <b>ہر سیکنڈ شمار ہے۔</b></p></div>
+      <div class="stat-row rv d6"><span class="n lat">70%</span><p>اگر سی پی آر فوراً شروع ہو تو بچنے کا امکان <b>70% تک</b> پہنچ سکتا ہے — بغیر سی پی آر صرف 10%۔</p></div>
+      <div class="chips rv d6" style="margin-top:2vh">
+        <span class="chip warn">زیادہ تر واقعات گھر میں ہوتے ہیں</span>
+        <span class="chip hot">مدد آنے سے پہلے کے لمحے</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>بنیادی زندگی بچاؤ <span class="dot">●</span> کمیونٹی ٹریننگ</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 3 : بچاؤ کی زنجیر ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="3 / 13">
+  <div class="rv d1 eyebrow">بچاؤ کی زنجیر</div>
+  <h2 class="rv d2" style="margin-top:1vh">پانچ کڑیاں — <span class="red">کوئی ایک بھی نہ ٹوٹے</span></h2>
+  <div class="chain rv d3" style="margin-top:3.5vh;justify-content:center">
+    <div class="link"><span class="stepn">1</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6a5.4 5.4 0 0 1 9.3 6c-2.3 4.4-9.3 9-9.3 9z"/></svg>
+      <b>پہچانیں<br>اور کال کریں</b></div>
+    <div class="chain-join"></div>
+    <div class="link"><span class="stepn">2</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><path d="M8 2v6M16 2v6M3 10h18M5 10a7 7 0 0 0 14 0"/></svg>
+      <b>سی پی آر فوراً<br>شروع کریں</b></div>
+    <div class="chain-join"></div>
+    <div class="link"><span class="stepn">3</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M7 12h3l1.5-3 2 6 1.5-3H19"/></svg>
+      <b>اے ای ڈی<br>سے جھٹکا</b></div>
+    <div class="chain-join"></div>
+    <div class="link"><span class="stepn">4</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><path d="M17 8a5 5 0 1 0-10 0c0 4-3 5-3 8h16c0-3-3-4-3-8zM10 21h4"/></svg>
+      <b>ایمبولینس<br>کی دیکھ بھال</b></div>
+    <div class="chain-join"></div>
+    <div class="link" style="background:var(--yellow)"><span class="stepn">5</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#161210" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <b>افاقہ اور<br>بعد کی مدد</b></div>
+  </div>
+  <p class="rv d5 sub" style="margin-top:3.5vh;text-align:center;max-width:56ch;margin-left:auto;margin-right:auto">پہلی دو کڑیاں <b class="red">آپ</b> ہیں۔ پوری زنجیر آپ کے شروع کرنے پر کھڑی ہوتی ہے۔ <b>آپ کا ایک فیصلہ — کسی کی پوری زندگی۔</b></p>
+  <div class="footer"><span>بنیادی زندگی بچاؤ <span class="dot">●</span> کمیونٹی ٹریننگ</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 4 : مرحلہ 01 — چیک ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="4 / 13">
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow">مرحلہ 01</div>
+      <h2 class="rv d2" style="margin-top:1vh">چیک کریں — <span class="red">پکاریں، ٹھونگیں</span></h2>
+      <div style="margin-top:2.2vh">
+        <div class="check good rv d3"><div class="box"></div><div><b>پہلے ماحول دیکھیں</b><p>بجلی، ٹریفک، آگ یا جانور — مدد دینے سے پہلے خود محفوظ رہیں۔ محفوظ ماحول = مؤثر مدد۔</p></div></div>
+        <div class="check good rv d4"><div class="box"></div><div><b>زور سے پکاریں</b><p>«کیا آپ ٹھیک ہیں؟!» — دونوں کانوں کے پاس، صاف آواز میں۔ اگر کوئی جواب نہ دے تو دوبارہ پکاریں۔</p></div></div>
+        <div class="check good rv d5"><div class="box"></div><div><b>کندھوں پر زور سے ٹھونگیں</b><p>ٹھونگ کر کسی بھی حرکت یا آواز کے جواب کا خیال رکھیں۔ ٹھونگنا آہستہ نہیں — زور سے۔</p></div></div>
+        <div class="check bad rv d6" style="color:var(--red)"><div class="box"></div><div><b>جواب نہ ملے تو</b><p>غیر ہوشیار سمجھ کر فوراً اگلے مرحلے پر بڑھیں — انتظار نہ کریں۔ ایک سیکنڈ بھی قیمتی ہے۔</p></div></div>
+      </div>
+    </div>
+    <figure class="photo rv d3" data-word="جانچ کریں">
+      <span class="ovl"><span class="tag">مرحلہ 01</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/check-response-1.jpg"
+           data-alt="assets/img/check-response-2.jpg"
+           alt="بے ہوش مریض کی جانچ" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">پکاریں — جواب نہ ملے تو انتظار نہیں</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>مرحلہ 1 <span class="dot">●</span> جواب چیک کریں</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 5 : مرحلہ 02 — کال ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="5 / 13" style="background:var(--ink)">
+  <div class="halftone" style="top:7vh;right:5vw;width:20vw;height:20vh;background-image:radial-gradient(var(--paper) 1.6px,transparent 1.6px)"></div>
+  <div class="rv d1 eyebrow" style="color:var(--yellow)">مرحلہ 02</div>
+  <h2 class="rv d2 paper-txt" style="margin-top:1vh">مدد پکاریں — <span class="red">نمبر ملائیں</span></h2>
+  <p class="rv d3" style="color:var(--paper);opacity:.85;margin-top:1.4vh;max-width:50ch;font-weight:500;font-size:clamp(.85rem,1.25vw,1.08rem)">کسی ایک کو اشارہ کر کے کہیں: <b style="color:var(--yellow)">«آپ — 1122 پر کال کریں!»</b> یہ نہ سمجھیں کہ کوئی اور ضرور کرے گا۔ <b style="color:var(--yellow)">بystander اثر</b> سب کو روک دیتا ہے — آپ فیصلہ کریں۔</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.6vw;margin-top:2.5vh">
+    <div class="callpill rv d4" style="box-shadow:-7px 7px 0 var(--red)">
+      <span class="num">1122</span>
+      <div><div class="who">سندھ حکومت ریسکیو سروس</div><div class="sub2">ایمبولینس — سندھ</div></div>
+    </div>
+    <div class="callpill rv d5" style="box-shadow:-7px 7px 0 var(--red)">
+      <span class="num">115</span>
+      <div><div class="who">ایدھی ایمبولینس</div><div class="sub2">ملک بھر میں مفت</div></div>
+    </div>
+    <div class="callpill rv d6" style="box-shadow:-7px 7px 0 var(--yellow)">
+      <span class="num">1020</span>
+      <div><div class="who">چھیپا ایمبولینس</div><div class="sub2">ملک بھر میں</div></div>
+    </div>
+    <div class="callpill rv d7" style="box-shadow:-7px 7px 0 var(--yellow)">
+      <span class="num">1101</span>
+      <div><div class="who">امن ایمبولینس</div><div class="sub2">ہنگامی مدد</div></div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:2.5vh;align-items:start">
+    <div class="card red-c rv d7" style="box-shadow:-8px 8px 0 var(--yellow)">
+      <b>فون پر کیا کہیں:</b>
+      <p style="margin-top:.3rem;line-height:2.05;font-weight:500">«ایک شخص بے ہوش ہے اور سانس نہیں لے رہا۔ مقام: [اپنی جگہ کا نام]۔ ایمبولینس بھیجیں۔ میرا نمبر [فون نمبر] ہے۔» — <b>اپنی طرف سے فون نہ بند کریں۔</b> اسپیکر آن رکھیں۔</p>
+      <div style="margin-top:.8rem;padding-top:.6rem;border-top:2px solid rgba(255,255,255,.3)">
+        <b style="font-size:clamp(.75rem,1vw,.9rem)">یاد رکھیں:</b>
+        <p style="margin-top:.2rem;font-size:clamp(.65rem,.9vw,.8rem);line-height:1.9;opacity:.9">مقام واضح بتائیں · فون نمبر بتائیں · اسپیکر آن رکھیں · ہدایات پر عمل کریں · فون نہ بند کریں</p>
+      </div>
+    </div>
+    <figure class="photo tilt-l rv d6" data-word="فوراً کال">
+      <span class="ovl"><span class="tag" style="background:var(--yellow);color:var(--ink)">مرحلہ 02</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/call-help-1.jpg"
+           data-alt="assets/img/call-help-2.jpg"
+           alt="موبائل پر کال" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">اسپیکر آن — ہاتھ آزاد رکھیں</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>مرحلہ 2 <span class="dot">●</span> مدد کے لیے کال</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 6 : مرحلہ 03 — سانس ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="6 / 13">
+  <div class="grid2">
+    <figure class="photo rv d3" data-word="10 سیکنڈ">
+      <span class="ovl"><span class="tag">مرحلہ 03</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/check-response-2.jpg"
+           data-alt="assets/img/check-response-1.jpg"
+           alt="سانس کی جانچ" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">دیکھیں · سنیں · محسوس کریں — زیادہ سے زیادہ 10 سیکنڈ</figcaption>
+    </figure>
+    <div>
+      <div class="rv d1 eyebrow">مرحلہ 03</div>
+      <h2 class="rv d2" style="margin-top:1vh">کیا وہ <span class="red">سانس لے رہا</span> ہے؟</h2>
+      <p class="rv d3 sub" style="margin-top:1.5vh">سینے کے پاس گھٹنے ٹیک کر بیٹھیں۔ سر پیچھے جھکا کر ٹھوڑی اوپر اٹھائیں — سانس کی نالی کھولیں۔ <b>زیادہ سے زیادہ 10 سیکنڈ</b> — گنتی شروع کریں…</p>
+      <div class="rv d4" style="margin-top:2vh">
+        <div class="check good"><div class="box"></div><div><b>دیکھیں</b> — سینہ اٹھ رہا ہے یا نہیں؟ کانوں کے قریب جھکیں۔</div></div>
+        <div class="check good"><div class="box"></div><div><b>سنیں</b> — کان کے پاس سانس کی آواز؟ خاموشی سے سنیں۔</div></div>
+        <div class="check good"><div class="box"></div><div><b>محسوس کریں</b> — رخسار پر سانس کی ہوا؟ ہتھیلی رخسار کے قریب رکھیں۔</div></div>
+        <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>ہانپنا سانس نہیں!</b> بے ترتیب، چرچرے دار آوازیں = دل کام بند۔ فوراً سی پی آر شروع کریں۔</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>مرحلہ 3 <span class="dot">●</span> سانس چیک — 10 سیکنڈ سے زیادہ نہیں</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 7 : مرحلہ 04 — دھچکے ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="7 / 13" style="background:var(--red)">
+  <div class="stripes" style="bottom:9vh;right:-70px;width:260px;height:260px;transform:rotate(-10deg)"></div>
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow" style="color:var(--yellow)">مرحلہ 04 — بی ایل ایس کا دل</div>
+      <h2 class="rv d2 paper-txt" style="margin-top:1vh">زور سے دبائیں — <span style="color:var(--yellow)">تیزی سے</span></h2>
+      <div class="rv d3" style="display:flex;gap:1.4vw;margin-top:2vh;flex-wrap:wrap">
+        <div class="card ink-c" style="text-align:center;box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem">
+          <div class="giant lat" style="font-size:clamp(2.2rem,4.4vw,3.8rem)">30:2</div>
+          <b style="font-size:.75rem">دھچکے : سانسیں</b>
+        </div>
+        <div class="card" style="text-align:center;padding:.7rem 1.3rem">
+          <div class="giant lat" style="font-size:clamp(2.2rem,4.4vw,3.8rem)">5–6<span style="font-size:.4em">سینٹی</span></div>
+          <b style="font-size:.75rem">گہرائی — سینے کا ⅓</b>
+        </div>
+        <div class="card" style="text-align:center;background:var(--ink);color:var(--paper);box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem">
+          <div class="giant lat pulse yellow" style="font-size:clamp(2.2rem,4.4vw,3.8rem)">100–120</div>
+          <b style="font-size:.75rem">فی منٹ — دل کی رفتار</b>
+        </div>
+      </div>
+      <p class="rv d4 paper-txt" style="margin-top:2vh;font-weight:600;font-size:clamp(.85rem,1.2vw,1.05rem);line-height:2.05">کسی تیز دھن کی تال پر دبائیں — مثلاً <span class="lat">Stayin’ Alive</span> جیسی رفتار پر۔ ہر دھچکے کے بعد سینہ مکمل اوپر آنے دیں۔ <b style="color:var(--yellow)">جب تک مدد نہ پہنچے، رکیے نہیں۔</b></p>
+      <div class="rv d5 chips" style="margin-top:1.5vh">
+        <span class="chip" style="background:var(--white);color:var(--ink)">ہاتھ کی ایڑی سینے کے مرکز پر</span>
+        <span class="chip" style="background:var(--white);color:var(--ink)">دوسرہ ہاتھ اوپر سے پکڑیں</span>
+        <span class="chip" style="background:var(--white);color:var(--ink)">بازوں سیدھے رکھیں</span>
+        <span class="chip" style="background:var(--white);color:var(--ink)">کندھوں سے زور لگائیں</span>
+      </div>
+    </div>
+    <figure class="photo rv d3 tilt-l" data-word="سی پی آر">
+      <span class="ovl"><span class="tag" style="background:var(--ink)">مرحلہ 04</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/chest-compressions-1.jpg"
+           data-alt="assets/img/cpr-training-1.jpg"
+           alt="سینے پر دھچکے" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">سینے کے بالکل درمیان — ہاتھ کی ایڑی سے</figcaption>
+    </figure>
+  </div>
+  <div class="footer" style="background:var(--ink)"><span>مرحلہ 4 <span class="dot">●</span> سینے پر دھچکے</span><span>سینے کے بالکل درمیان · سیدھی بانہیں</span></div>
+</section>
+
+<!-- ============ 8 : مرحلہ 05 — سانسیں / صرف ہاتھ ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="8 / 13">
+  <div class="halftone" style="top:8vh;left:6vw;width:20vw;height:20vh"></div>
+  <div class="rv d1 eyebrow">مرحلہ 05</div>
+  <h2 class="rv d2" style="margin-top:1vh">سانسیں — یا صرف <span class="red">ہاتھ؟</span></h2>
+  <div class="vs" style="margin-top:2.5vh">
+    <div class="card rv d3">
+      <span class="tag" style="margin-bottom:.8rem">سانسوں کے ساتھ — 30:2</span>
+      <div class="check good"><div class="box"></div><div><b>سر جھکائیں، ٹھوڑی اٹھائیں</b></div></div>
+      <div class="check good"><div class="box"></div><div><b>ناک بند کریں</b> — منہ پر مکمل سیل</div></div>
+      <div class="check good"><div class="box"></div><div><b>2 سانسیں، ہر ایک 1 سیکنڈ</b> — سینہ اٹھتا دیکھیں</div></div>
+      <div class="check good"><div class="box"></div><div><b>فوراً واپس دھچکوں پر آئیں</b></div></div>
+    </div>
+    <div class="card red-c rv d4">
+      <span class="tag" style="background:var(--yellow);color:var(--ink);margin-bottom:.8rem">تربیت یافتہ نہیں؟ صرف ہاتھ</span>
+      <p style="font-weight:600;font-size:clamp(.9rem,1.35vw,1.15rem);line-height:2.1">بغیر سانسوں، صرف مسلسل دھچکے بھی جان بچاتے ہیں۔ منہ سے منہ ممکن نہ ہو تو <b style="color:var(--yellow)">صاف کپڑا درمیان میں رکھیں</b> — مگر جراثیم کا خوف جان دینے نہ دیں۔</p>
+      <div style="margin-top:1rem;font-weight:700;font-size:clamp(1.2rem,2.2vw,1.8rem);line-height:1.9">ہچکچاہٹ سے بہتر دھچکے ہیں</div>
+      <p style="margin-top:.5rem;font-size:clamp(.7rem,1vw,.85rem);line-height:1.8;opacity:.85"><b>جذباتی نہ ہوں:</b> دھچکے لگائیں۔ سانس دینا ضروری نہیں — <b style="color:var(--yellow)">مسلسل دھچکے ہی کافی ہیں۔</b></p>
+    </div>
+  </div>
+  <div class="rv d5 chips" style="margin-top:2.5vh">
+    <span class="chip warn">30 دھچکے ← 2 سانسیں ← دہرائیں</span>
+    <span class="chip">ممکن ہو تو ہر 2 منٹ بعد مددگار بدلیں</span>
+    <span class="chip hot">جب تک مدد نہ آئے، جاری رکھیں</span>
+  </div>
+  <div class="footer"><span>مرحلہ 5 <span class="dot">●</span> سانس / صرف ہاتھ والا سی پی آر</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 9 : مرحلہ 06 — اے ای ڈی ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="9 / 13" style="background:var(--ink)">
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow" style="color:var(--yellow)">مرحلہ 06</div>
+      <h2 class="rv d2 paper-txt" style="margin-top:1vh">اے ای ڈی — <span class="red">دل کا ری‌اسٹارٹ بٹن</span></h2>
+      <p class="rv d3" style="color:var(--paper);opacity:.85;margin-top:1.5vh;max-width:46ch;font-weight:500;font-size:clamp(.85rem,1.25vw,1.08rem);line-height:2.05">ہسپتالوں، ایئرپورٹوں اور کچھ عوامی عمارتوں میں ملتا ہے۔ یہ خود آواز میں ہدایت دیتا ہے — <b style="color:var(--yellow)">بس آواز سنیں</b>۔ ضرورت پڑنے پر ہی جھٹکا دیتا ہے؛ یہ بند دل کو نقصان نہیں پہنچا سکتا۔</p>
+      <div class="rv d4" style="margin-top:1.8vh">
+        <div class="check good" style="color:var(--paper)"><div class="box"></div><div><b style="color:var(--yellow)">آن کریں</b><p style="color:var(--paper);opacity:.8">سبز بٹن دبائیں، ہدایات سنیں۔ آپ کو صرف آواز سننی ہے۔</p></div></div>
+        <div class="check good" style="color:var(--paper)"><div class="box"></div><div><b style="color:var(--yellow)">پیڈ ننگے سینے پر لگائیں</b><p style="color:var(--paper);opacity:.8">پیڈ پر بنی تصویر کے مطابق۔ ایک پیڈ دائیں سینے کے اوپر، دوسرا بائیں نیچے۔</p></div></div>
+        <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b style="color:var(--yellow)">دور ہٹ جائیں!</b><p style="color:var(--paper);opacity:.8">تجزیہ یا جھٹکے کے دوران کوئی مریض کو نہ چھوئے۔ سب دور ہو جائیں۔</p></div></div>
+        <div class="check good" style="color:var(--paper)"><div class="box"></div><div><b style="color:var(--yellow)">فوراً سی پی آر دوبارہ شروع کریں</b><p style="color:var(--paper);opacity:.8">جھٹکے کے بعد بھی دھچکے جاری رکھیں۔ ای ی ڈی ہر 2 منٹ بعد دوبارہ تجزیہ کرے گا۔</p></div></div>
+        <div class="check good" style="color:var(--paper)"><div class="box"></div><div><b style="color:var(--yellow)">بچوں کے لیے</b><p style="color:var(--paper);opacity:.8">چھوٹے بچوں کے لیے چھوٹے پیڈ استعمال کریں — اگر موجود نہ ہوں تو بڑے پیڈ بھی چلیں گے۔</p></div></div>
+      </div>
+    </div>
+    <figure class="photo tilt-l rv d3" data-word="اے ای ڈی">
+      <span class="ovl"><span class="tag">مرحلہ 06</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/aed-1.jpg"
+           data-alt="assets/img/aed-2.jpg"
+           alt="ای ی ڈی" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">ہنگامی سامان — آواز پر عمل کریں</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>مرحلہ 6 <span class="dot">●</span> خودکار خارجی ڈیفبریلیٹر</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 10 : گھٹن ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="10 / 13">
+  <div class="grid2">
+    <figure class="photo rv d3" data-word="عالمی علامت">
+      <span class="ovl"><span class="tag">عالمی علامت</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/heimlich-maneuver.jpg"
+           alt="ہائملک — بزرگ اور بچہ دونوں کے لیے" loading="lazy" onerror="imgErr(this)"
+           style="height:auto;max-height:55vh;object-fit:contain">
+      <figcaption class="ph-cap">بزرگ: پیٹ کے جھٹکے · بچہ: پیٹھ پر ٹھپکے</figcaption>
+    </figure>
+    <div>
+      <div class="rv d1 eyebrow">خاص صورتِ حال</div>
+      <h2 class="rv d2" style="margin-top:1vh">گھٹن؟ <span class="red">پیٹ دبائیں — پیٹھ نہیں</span></h2>
+      <div style="margin-top:2vh">
+        <div class="check good rv d3"><div class="box"></div><div><b>پوچھیں: «کیا آپ گھٹ رہے ہیں؟»</b><p>کھانس سکتے یا بول سکتے ہیں تو کھانسیں آنے دیں۔ پیٹھ پر نہ ماریں۔ خود کو بچائیں۔</p></div></div>
+        <div class="check good rv d4"><div class="box"></div><div><b>نہ بول سکیں تو</b><p>پیچھے کھڑے ہوں۔ ناف کے اوپر مٹھی بند کریں، انگوٹھا اندر کی طرف۔ کندھے سے تکھانے لگائیں۔</p></div></div>
+        <div class="check good rv d5"><div class="box"></div><div><b>دوسرے ہاتھ سے مٹھی پکڑیں</b><p>تیز، زوردار اوپر اور اندر کی طرف جھٹکے — حرف <span class="lat">J</span> جیسی حرکت۔ 5 بار جھٹکے دیں۔</p></div></div>
+        <div class="check good rv d6"><div class="box"></div><div><b>چیز نکلنے تک دہرائیں</b><p>یا شخص بیہوش ہو جائے ← سی پی آر شروع کریں۔ <b>پیٹھ پر 5 ٹھپکے اور 5 جھٹکے</b> — باری باری۔</p></div></div>
+        <div class="check good rv d7"><div class="box"></div><div><b>بچوں کے لیے</b><p><b>نوزائیہ:</b> 2 انگلیوں سے سینے پر 5 دبائیں۔ <b>بچہ:</b> 5 پیٹھ کے ٹھپکے + 5 پیٹ کے جھٹکے۔</p></div></div>
+      </div>
+      <div class="rv d7 chips" style="margin-top:1.5vh">
+        <span class="chip warn">کھانسی ممکن ہو تو پہلے کھانسیں</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>گھٹن <span class="dot">●</span> پیٹ کے جھٹکے (ہائملک)</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 11 : افاقہ کی پوزیشن ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="11 / 13" style="background:var(--cream)">
+  <div class="halftone" style="bottom:10vh;left:6vw;width:20vw;height:20vh"></div>
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow">سانس واپس آنے کے بعد</div>
+      <h2 class="rv d2" style="margin-top:1vh">افاقہ کی <span class="red">پوزیشن</span></h2>
+      <p class="rv d3 sub" style="margin-top:1.5vh">سانس آرہی ہو مگر ہوش نہ ہو؟ مریض کو طرف لٹا دیں — زبان پیچھے نہیں گرے گا، اُلٹی آسانی سے باہر نکلے گی۔ یہ پوزیشن سانس کی نالی کھولی رکھتی ہے۔</p>
+      <div class="rv d4" style="margin-top:2vh">
+        <div class="check good"><div class="box"></div><div><b>مریض کے پاس آئیں، گھٹنوں پر بیٹھیں</b><p>مریض کا منہ اپنی طرف رکھیں۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>ایک ہاتھ رخسار کے پاس رکھیں</b><p>ہتھیلی اوپر کی طرف رکھیں۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>دور والا ہاتھ سینے پر رکھیں</b><p>ہتھیلی نیچے کی طرف، کہینوں کے قریب۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>دور والا گھٹنا موڑیں</b><p>پاؤں زمین پر سیدھا رکھیں۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>گھٹنے اور کندھے سے اپنی طرف لٹائیں</b><p>آہستہ سے — جھٹکے نہ دیں۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>سر پیچھے جھکا کر سانس دیکھتے رہیں</b><p>ایمبولینس آنے تک اکیلا نہ چھوڑیں۔ ہر کچھ سیکنڈ بعد سانس چیک کریں۔</p></div></div>
+      </div>
+    </div>
+    <figure class="photo tilt-l rv d3" data-word="طرف لٹائیں">
+      <span class="ovl"><span class="tag" style="background:var(--yellow);color:var(--ink)">بعد کی دیکھ بھال</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/recovery-position-1.jpg"
+           data-alt="assets/img/recovery-position-2.jpg"
+           alt="مریض کی دیکھ بھال — افاقہ کی پوزیشن" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">طرف لٹائیں — سانس کھلی رکھیں، ساتھ رہیں</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>افاقہ کی پوزیشن <span class="dot">●</span> طرف لٹائیں، سانس کھلی رکھیں</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 12 : کریں / نہ کریں ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="12 / 13">
+  <div class="rv d1 eyebrow">یاد رکھیں</div>
+  <h2 class="rv d2" style="margin-top:1vh">یہ کریں۔ <span class="red">یہ کبھی نہ کریں۔</span></h2>
+  <div class="vs" style="margin-top:2.5vh">
+    <div class="card rv d3" style="border-color:var(--green);box-shadow:-8px 8px 0 var(--green)">
+      <span class="tag" style="background:var(--green);margin-bottom:.9rem">✓ ہمیشہ</span>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>سب سے پہلے</b> اپنی اور ماحول کی حفاظت</div></div>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>سینے کے بیچ میں</b> زور سے، تیزی سے — 100–120 فی منٹ</div></div>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>جلدی 1122 / 115</b> پر کال — اسپیکر آن</div></div>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>جاری رکھیں</b> — تھک جائیں تو مددگار بدلیں</div></div>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>ای ی ڈی</b> استعمال کریں — آواز سنیں</div></div>
+      <div class="check good"><div class="box" style="border-color:var(--green)"></div><div><b>ہمت نہ ہاریں</b> — جب تک مدد نہ آئے، رکیے نہیں</div></div>
+    </div>
+    <div class="card rv d4">
+      <span class="tag" style="background:var(--ink);margin-bottom:.9rem">✗ کبھی نہیں</span>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>بے ہوش کا سر نہ اٹھائیں</b>، تکیہ نہ دیں</div></div>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>بے ہوش کے منہ میں پانی نہ ڈالیں</b> — گلا ڈب جائے گا</div></div>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>«دیکھتے ہیں» کہہ کر سی پی آر نہ روکیں</b></div></div>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>پسلی ٹوٹنے کا خوف نہ کریں</b> — پسلی جُڑ جاتی ہے، لیکن دل نہیں</div></div>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>بے ہوش کو کھڑا نہ کریں</b> — سیدھا لٹا دیں</div></div>
+      <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>جانداروں سے نہ بھاگیں</b> — پہلے ماحول محفوظ کریں</div></div>
+    </div>
+  </div>
+  <div class="footer"><span>کریں / نہ کریں <span class="dot">●</span> فوری یاد دہانی</span><span>YEF شیر پاؤ</span></div>
+</section>
+
+<!-- ============ 13 : اختتام ============ -->
+<section class="slide" role="group" aria-roledescription="slide" aria-label="13 / 13" style="background:var(--red)">
+  <div class="stripes" style="top:-50px;right:-70px;width:280px;height:280px;transform:rotate(8deg)"></div>
+  <div class="stripes" style="bottom:7vh;left:-60px;width:240px;height:240px;transform:rotate(-14deg)"></div>
+  <div class="grid2">
+    <div>
+      <div class="rv d1 eyebrow paper-txt">اب — مشق کا وقت</div>
+      <h1 class="rv d2 paper-txt" style="margin-top:1vh">آپ ہی <span style="color:var(--yellow)">پہلے مددگار</span> ہیں</h1>
+      <div class="rv d3" style="display:flex;gap:1.4vw;margin-top:2.5vh;flex-wrap:wrap">
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
+          <div class="giant" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">چیک کریں</div><b style="font-size:.75rem">پکاریں · ٹھونگیں</b></div>
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
+          <div class="giant" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">کال کریں</div><b style="font-size:.75rem"><span class="lat">1122 · 115</span></b></div>
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
+          <div class="giant pulse yellow" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">دھچکے</div><b style="font-size:.75rem"><span class="lat">30:2</span> · زور اور تیزی</b></div>
+      </div>
+      <p class="rv d4 paper-txt" style="margin-top:2.5vh;font-weight:600;font-size:clamp(.95rem,1.4vw,1.2rem);max-width:46ch;line-height:2.1">آگے آئیں اور ڈمی پر مشق کریں۔ آج ہر ایک دھچکے لگائے گا — <b style="color:var(--yellow)">کیونکہ ایک دن یہ کوئی اپنا ہی ہوگا۔</b></p>
+      <div class="rv d5 chips" style="margin-top:1.5vh">
+        <span class="chip" style="background:var(--yellow);color:var(--ink)">مشق = مہارت</span>
+        <span class="chip" style="background:var(--yellow);color:var(--ink)">مہارت = اعتماد</span>
+        <span class="chip" style="background:var(--yellow);color:var(--ink)">اعتماد = زندگی</span>
+      </div>
+    </div>
+    <figure class="photo tilt-l rv d3" data-word="مشق کریں">
+      <span class="tape"></span><span class="tape t2"></span>
+      <img src="assets/img/youth-training.jpg"
+           data-alt="assets/img/cpr-training-2.jpg"
+           alt="نوجوان ٹریننگ میں" loading="lazy" onerror="imgErr(this)">
+      <figcaption class="ph-cap">آج مشق — کل کسی کی زندگی</figcaption>
+    </figure>
+  </div>
+  <div class="footer" style="background:var(--ink)">
+    <span>شکریہ <span class="dot">●</span> یوتھ انگیجمنٹ فورم — شیر پاؤ چیپٹر</span>
+    <span>سوالات؟ اب پوچھیں۔</span>
+  </div>
+</section>
+
+</div>
+
+<div class="footer" id="global-footer">
+  <span>YEF <span class="dot">●</span> شیر پاؤ چیپٹر</span>
+  <span id="slide-label"></span>
+  <span class="nav-btns">
+    <button id="next" aria-label="اگلا سلائیڈ" title="اگلا">‹</button>
+    <button id="prev" aria-label="پچھلا سلائیڈ" title="پچھلا">›</button>
+  </span>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+const progress=document.getElementById('progress');
+const slideLabel=document.getElementById('slide-label');
+
+function show(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>{
+    s.classList.toggle('active',k===n);
+    s.classList.toggle('prev',k<n);
+  });
+  i=n;
+  slideLabel.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  progress.style.width=((i+1)/slides.length*100)+'%';
+}
+document.getElementById('next').onclick=()=>show(i+1);
+document.getElementById('prev').onclick=()=>show(i-1);
+addEventListener('keydown',e=>{
+  if(['ArrowLeft','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1);}
+  if(['ArrowRight','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+let tx=0;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>60)show(i+(dx>0?-1:1));
+},{passive:true});
+show(0);
+</script>
+<script>window.addEventListener('load',()=>{setTimeout(()=>{const L=[];
+const imgs=[...document.querySelectorAll('.photo img')];
+L.push('PHOTOS='+imgs.length+' FAILING='+imgs.filter(i=>!(i.complete&&i.naturalWidth>0)).length);
+imgs.forEach((im,k)=>L.push('  '+(im.complete&&im.naturalWidth>0?'PASS':'FAIL')+' '+(im.getAttribute('src').split('/').pop())+' nat='+im.naturalWidth+'x'+im.naturalHeight));
+L.push('NOIMG_TILES='+document.querySelectorAll('.photo.noimg').length);
+L.push('EXTERNAL_REQS='+performance.getEntriesByType('resource').filter(r=>/^https?:/.test(r.name)&&r.name.indexOf('github.io')<0).length);
+L.push('FONTS nastaliq700='+document.fonts.check('700 20px "Noto Nastaliq Urdu"')+' nastaliq500='+document.fonts.check('500 20px "Noto Nastaliq Urdu"')+' anton='+document.fonts.check('400 20px "Anton"'));
+L.push('FONT_ERRORS='+[...document.fonts].filter(x=>x.status==='error').length);
+L.push('SLIDES='+document.querySelectorAll('.slide').length);
+L.push('H1_FONT='+getComputedStyle(document.querySelector('h1')).fontFamily);
+L.push('ORIGIN='+location.protocol+'//'+location.host);
+const p=document.createElement('pre');p.id='REPORT';p.textContent='@@'+L.join('\n')+'@@';document.body.appendChild(p);},3500)});</script>
+</body>
+</html>
