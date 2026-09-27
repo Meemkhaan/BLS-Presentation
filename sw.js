@@ -1,7 +1,7 @@
 /* BLS presentation — offline cache
    Lets the hosted GitHub Page keep working with no connectivity after one visit.
    Path-relative, so the same file serves /BLS-Presentation/ and any subfolder. */
-const VERSION = 'bls-deck-v1';
+const VERSION = 'bls-deck-v2';
 
 const ASSETS = [
   './',
@@ -23,6 +23,7 @@ const ASSETS = [
   './assets/img/chest-compressions-1.jpg',
   './assets/img/cpr-training-1.jpg',
   './assets/img/cpr-training-2.jpg',
+  './assets/img/Handwashing.jpg',
   './assets/img/heimlich-maneuver.jpg',
   './assets/img/recovery-position-1.jpg',
   './assets/img/recovery-position-2.jpg',

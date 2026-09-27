@@ -153,6 +153,7 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
 /* ---------- LAYOUT ---------- */
 .grid2{display:grid;grid-template-columns:1.05fr 1fr;gap:4vw;align-items:center}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw}
+.grid3 .check{margin-bottom:.5rem}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:2.4vw}
 .chips{display:flex;gap:.9rem;flex-wrap:wrap}
 .chip{border:3px solid var(--ink);background:var(--white);padding:.15rem 1rem .45rem;
@@ -193,6 +194,25 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
 .check.bad .box{border-radius:50%}
 .check b{line-height:2}
 .check p{font-size:clamp(.75rem,1.05vw,.95rem);opacity:.85;line-height:1.95}
+
+@media (max-width:1500px){
+  /* narrow 3-up columns wrap more, so reclaim height from padding/margins (not content) */
+  .grid3{gap:1.1vw}
+  .grid3 .check{margin-bottom:.35rem}
+  .grid3 .check p{line-height:1.8}
+  .grid3 .stat-row{padding:.45rem 0}
+  .grid3 .stat-row p{line-height:1.8}
+  .grid3 .card{padding:.8rem 1.1rem;line-height:1.85}
+}
+
+@media (max-width:1100px){
+  .grid3 h2{font-size:clamp(1.45rem,3.3vw,2.3rem);line-height:1.5}
+  .grid3 .sub{line-height:1.75}
+  .grid3 .check{line-height:1.7;margin-bottom:.25rem}
+  .grid3 .check p{line-height:1.7}
+  .grid3 .card{padding:.6rem .9rem;line-height:1.7}
+  .grid3 .chip{font-size:.72rem}
+}
 
 @media (max-width:940px){
   .grid2,.grid3,.vs{grid-template-columns:1fr;gap:1.3rem}
@@ -577,18 +597,26 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
 <!-- ============ 13 : ہاتھوں کی صفائی ============ -->
 <section class="slide" role="group" aria-roledescription="slide" aria-label="13 / 15" style="background:var(--cream)">
   <div class="halftone" style="top:7vh;right:6vw;width:19vw;height:19vh"></div>
-  <div class="grid2">
+  <div class="grid3">
     <div>
       <div class="rv d1 eyebrow">عام صحت — بیماری سے بچاؤ</div>
       <h2 class="rv d2" style="margin-top:1vh">ہاتھوں کی <span class="red">صفائی</span> — ہر روز کی عادت</h2>
       <p class="rv d3 sub" style="margin-top:1.4vh">ہمارے ہاتھ ہر جگہ چھوتے ہیں — دروازہ، سکول، دکان، بازار اور بیت الخلا — اور <b>اسی راستے سے جراثیم ایک شخص سے دوسرے تک پہنچتے ہیں۔</b> صابن کے ساتھ ہاتھ دھونا سستا اور مؤثر ترین طریقہ ہے۔ یہ عادت ہر گھر کے لیے ہے، ہر سکول کے لیے — اور ہنگامی صورتِ حال میں بھی پہلا قدم یہی ہے۔</p>
       <div class="rv d4" style="margin-top:1.6vh">
-        <div class="check good"><div class="box"></div><div><b>گرم پانی اور صابن</b><p>ہاتھ گیلے کریں، صابن لگائیں، کم از کم <b>20 سیکنڈ</b> رگڑیں — سالگرہ کا گانا دو بار گایا جائے۔</p></div></div>
+        <div class="check good"><div class="box"></div><div><b>گرم پانی اور صابن</b><p>ہاتھ گیلے کریں، صابن لگائیں، کم از کم <b>20 سیکنڈ</b> رگڑیں۔</p></div></div>
         <div class="check good"><div class="box"></div><div><b>سب جگہ پہنچیں</b><p>ہاتھوں کی پشت · انگوٹھے · انگلیوں کے درمیان · ناخنوں کے نیچے · ہتھیلیوں کے درمیان۔</p></div></div>
         <div class="check good"><div class="box"></div><div><b>صاف پانی سے دھولیں، خشک کریں</b><p>تولیے یا صاف کپڑے سے — گندے یا پرانے کپڑے سے نہیں۔</p></div></div>
         <div class="check bad" style="color:var(--red)"><div class="box"></div><div><b>یہ ہاتھوں سے نہ ہٹائیں</b><p>منہ، آنکھ یا چہرے پر صابن نہ لگائیں — اور پینے کے بلورے سے ہاتھ نہ دھویں۔</p></div></div>
       </div>
     </div>
+    <figure class="photo rv d4" data-word="ہاتھ دھویں" style="align-self:center">
+      <span class="ovl"><span class="tag">روزمرہ</span></span>
+      <span class="tape"></span>
+      <img src="assets/img/Handwashing.jpg"
+           alt="ہاتھوں کو صابن اور پانی سے دھونا" loading="lazy" onerror="imgErr(this)"
+           style="height:auto">
+      <figcaption class="ph-cap">صابن · 20 سیکنڈ · ہر سمت</figcaption>
+    </figure>
     <div>
       <div class="stat-row rv d4"><span class="n red lat">20</span><p>صابن سے دھونے کا کم از کم وقت — <b>سیکنڈ</b>۔ تیزی سے دھونا کافی نہیں، مکمل طریقہ ضروری ہے۔</p></div>
       <div class="stat-row rv d5"><span class="n lat">60<small>%</small></span><p>الکحل والا ہینڈ سینیٹائزر — جب صابن اور صاف پانی دستیاب نہ ہوں۔</p></div>
