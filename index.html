@@ -205,6 +205,64 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
 .check b{line-height:2}
 .check p{font-size:clamp(.75rem,1.05vw,.95rem);opacity:.85;line-height:1.95}
 
+/* ---------- SHORT VIEWPORTS (laptops / projectors 768-900px tall) ----------
+   Fonts/padding above scale on vw only, so a 1366x768 screen overflows even
+   though 1920x1080 is fine. Compress the vertical rhythm when height is the
+   scarce dimension. Declared before the width queries so the narrow-screen
+   layout below still wins where both apply. */
+@media (max-height:900px){
+  .slide{padding-top:3vh;padding-bottom:max(6vh,calc(var(--fh,46px) + 1vh))}
+  h1{font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.5}
+  h2{font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.5}
+  .sub{line-height:1.9}
+  .photo img,.photo.noimg::after{height:min(26vh,240px)}
+  .photo .ph-cap{padding:.25rem .2rem .5rem}
+  .check{margin-bottom:.6rem;line-height:1.8}
+  .check p{line-height:1.75}
+  .card{padding:.9rem 1.3rem;line-height:1.9}
+  .stat-row{padding:.5rem 0}
+  .stat-row p{line-height:1.75}
+  .stat-row .n{font-size:clamp(1.8rem,4vw,3.1rem)}
+  .link{width:clamp(100px,10.5vw,142px);height:clamp(100px,10.5vw,142px)}
+  .callpill{padding:.4rem 1.1rem .6rem}
+  .callpill .num{font-size:clamp(1.6rem,3.2vw,2.5rem)}
+  .credits{margin-top:1.2vh;padding-top:.6rem;line-height:1.75}
+}
+
+/* Below ~800px tall the scarce dimension is severe. Keep a readable type floor
+   (~12px) and buy the space back from photos, gaps and padding instead of
+   shrinking text further — projected slides must stay legible. */
+@media (max-height:800px){
+  .slide{padding-top:2vh;padding-bottom:max(5vh,calc(var(--fh,46px) + .6vh))}
+  body{line-height:1.75}
+  h1{font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.4}
+  h2{font-size:clamp(1.55rem,3.2vw,2.4rem);line-height:1.4}
+  .sub{line-height:1.75;font-size:clamp(.9rem,1.35vw,1.1rem)}
+  .photo img,.photo.noimg::after{height:min(18vh,175px)}
+  .photo{padding:7px 7px 0}
+  .photo .ph-cap{font-size:.74rem;padding:.2rem .15rem .4rem}
+  .tape{height:20px;top:-10px}
+  .check{margin-bottom:.4rem;line-height:1.7}
+  .check p{line-height:1.6;font-size:.8rem}
+  .check .box{width:24px;height:24px;margin-top:.4rem}
+  .card{padding:.7rem 1rem;line-height:1.75}
+  .stat-row{padding:.35rem 0;gap:1rem}
+  .stat-row p{line-height:1.6;font-size:.85rem}
+  .stat-row .n{font-size:clamp(1.6rem,3.6vw,2.7rem)}
+  .link{width:clamp(90px,9.5vw,122px);height:clamp(90px,9.5vw,122px)}
+  .link b{font-size:.72rem;line-height:1.6}
+  .link svg{width:30%;height:26%;margin-bottom:.2rem}
+  .callpill{padding:.35rem 1rem .5rem}
+  .callpill .num{font-size:clamp(1.4rem,2.9vw,2.2rem)}
+  .callpill .who{font-size:.8rem;line-height:1.55}
+  .callpill .sub2{font-size:.7rem;line-height:1.55}
+  .chip{padding:.1rem .8rem .35rem;font-size:.74rem}
+  .chips{gap:.6rem}
+  .credits{margin-top:.9vh;padding-top:.45rem;line-height:1.65;font-size:.74rem}
+  .eyebrow{font-size:.78rem}
+  .tag{font-size:.78rem;padding:.12em .85em .25em}
+}
+
 @media (max-width:1500px){
   /* narrow 3-up columns wrap more, so reclaim height from padding/margins (not content) */
   .grid3{gap:1.1vw}
