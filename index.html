@@ -145,6 +145,16 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
   background-image:radial-gradient(rgba(244,237,222,.35) 1.6px,transparent 1.6px);
   background-size:14px 14px}
 
+/* ---------- CREDITS (facilitators / supervision) ---------- */
+.credits{margin-top:2vh;padding-top:.9rem;border-top:2px solid rgba(244,237,222,.35);
+  font-size:clamp(.72rem,1.05vw,.95rem);line-height:1.95}
+.credits .role{display:block;font-weight:700;color:var(--yellow);font-size:clamp(.7rem,1vw,.9rem);
+  letter-spacing:.02em;margin-bottom:.15rem}
+.credits .latin{direction:ltr;unicode-bidi:isolate;text-align:left;display:inline-block;
+  font-family:'Segoe UI',Arial,sans-serif;font-size:.95em;letter-spacing:.01em}
+.credits.on-ink{border-top-color:rgba(255,255,255,.3)}
+.credits.on-ink .role{color:var(--ink)}
+
 /* ---------- NAV ---------- */
 .nav{display:none}
 .slide .footer{display:none}
@@ -214,6 +224,12 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
   .grid3 .chip{font-size:.72rem}
 }
 
+@media (max-width:1366px){
+  .credits{margin-top:1.1vh;padding-top:.5rem;line-height:1.7;font-size:clamp(.68rem,.95vw,.85rem)}
+  .credits .role{margin-bottom:.1rem}
+  .credits .latin{font-size:.92em}
+}
+
 @media (max-width:940px){
   .grid2,.grid3,.vs{grid-template-columns:1fr;gap:1.3rem}
   .slide{padding:3.5vh 6vw max(9vh,calc(var(--fh,46px) + 1.5vh));overflow-y:auto;justify-content:flex-start}
@@ -246,6 +262,11 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
       <p class="rv d4 paper-txt" style="margin-top:2.2vh;font-weight:500;max-width:42ch;font-size:clamp(.85rem,1.3vw,1.1rem);line-height:2.1">
         نہ مشین، نہ ہسپتال — بس دو ہاتھ، ایک آواز اور <b style="color:var(--yellow)">عمل کرنے کی ہمت</b>۔ آج سیکھیں، عمر بھر کے لیے ساتھ رکھیں۔
       </p>
+      <div class="credits rv d5 paper-txt" style="margin-top:1.5vh">
+        <span class="role paper-txt">زیرِ نگرانی — <span class="latin">Sir Shahjahan</span></span>
+        <span class="paper-txt">فیسلیٹیٹرز — </span><br>
+        <span class="latin">Irfan Raza · Waqar Younus · Irfan Zada · Wahid · Mukhtiar Khan</span>
+      </div>
     </div>
     <figure class="photo rv d3 tilt-l" data-word="عمل کریں">
       <span class="tape"></span><span class="tape t2"></span>
@@ -701,19 +722,23 @@ body.fs-on .fs-btn{background:var(--red);color:var(--white)}
     <div>
       <div class="rv d1 eyebrow paper-txt">اب — مشق کا وقت</div>
       <h1 class="rv d2 paper-txt" style="margin-top:1vh">آپ ہی <span style="color:var(--yellow)">پہلے مددگار</span> ہیں</h1>
-      <div class="rv d3" style="display:flex;gap:1.4vw;margin-top:2.5vh;flex-wrap:wrap">
-        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
-          <div class="giant" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">چیک کریں</div><b style="font-size:.75rem">پکاریں · تھپتھپائیں</b></div>
-        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
-          <div class="giant" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">کال کریں</div><b style="font-size:.75rem"><span class="lat">1122 · 115</span></b></div>
-        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.7rem 1.3rem;text-align:center">
-          <div class="giant pulse yellow" style="font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.7">دھچکے</div><b style="font-size:.75rem"><span class="lat">30:2</span> · زور اور تیزی</b></div>
+      <div class="rv d3" style="display:flex;gap:1.4vw;margin-top:1.8vh;flex-wrap:wrap">
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.6rem 1.2rem;text-align:center">
+          <div class="giant" style="font-size:clamp(1.4rem,2.6vw,2.2rem);line-height:1.6">چیک کریں</div><b style="font-size:.75rem">پکاریں · تھپتھپائیں</b></div>
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.6rem 1.2rem;text-align:center">
+          <div class="giant" style="font-size:clamp(1.4rem,2.6vw,2.2rem);line-height:1.6">کال کریں</div><b style="font-size:.75rem"><span class="lat">1122 · 115</span></b></div>
+        <div class="card ink-c" style="box-shadow:-7px 7px 0 var(--yellow);padding:.6rem 1.2rem;text-align:center">
+          <div class="giant pulse yellow" style="font-size:clamp(1.4rem,2.6vw,2.2rem);line-height:1.6">دھچکے</div><b style="font-size:.75rem"><span class="lat">30:2</span> · زور اور تیزی</b></div>
       </div>
-      <p class="rv d4 paper-txt" style="margin-top:2.5vh;font-weight:600;font-size:clamp(.95rem,1.4vw,1.2rem);max-width:46ch;line-height:2.1">آگے بڑھیں اور ڈمی (Dummy) پر مشق کریں۔ آج کا فیصلہ ہی کسی اپنے یا کسی غیر کی زندگی بچا سکتا ہے — <b style="color:var(--yellow)">کیونکہ ایک دن یہ کوئی اپنا ہی ہوگا۔</b></p>
-      <div class="rv d5 chips" style="margin-top:1.5vh">
+      <p class="rv d4 paper-txt" style="margin-top:2vh;font-weight:600;font-size:clamp(.95rem,1.4vw,1.2rem);max-width:46ch;line-height:2.1">آگے بڑھیں اور ڈمی (Dummy) پر مشق کریں۔ آج کا فیصلہ ہی کسی اپنے یا کسی غیر کی زندگی بچا سکتا ہے — <b style="color:var(--yellow)">کیونکہ ایک دن یہ کوئی اپنا ہی ہوگا۔</b></p>
+      <div class="rv d5 chips" style="margin-top:1.1vh">
         <span class="chip" style="background:var(--yellow);color:var(--ink)">مشق = مہارت</span>
-        <span class="chip" style="background:var(--yellow);color:var(--ink)">مہارت = اعتماد</span>
         <span class="chip" style="background:var(--yellow);color:var(--ink)">اعتماد = زندگی</span>
+      </div>
+      <div class="credits rv d6 paper-txt">
+        <span class="role paper-txt">زیرِ نگرانی — <span class="latin">Sir Shahjahan</span></span>
+        <span class="paper-txt">فیسلیٹیٹرز — </span>
+        <span class="latin">Irfan Raza · Waqar Younus · Irfan Zada · Wahid · Mukhtiar Khan</span>
       </div>
     </div>
     <figure class="photo tilt-l rv d3" data-word="مشق کریں">
